@@ -128,3 +128,33 @@ h1, h3 {
     cursor: pointer !important;
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2) !important;
 }
+
+/* Footer */
+footer {
+    background-color: #333;
+    padding: 20px 0;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 15px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ddd;
+}
