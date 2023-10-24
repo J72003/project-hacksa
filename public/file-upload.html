@@ -52,114 +52,56 @@
   <hr>
   <div class="form" style="padding: 15px;">
     <h3>Retrieve and Decrypt a File</h3>
+    <label for="email-input">Enter Your Email Address:</label>
+    <input type="email" id="email-input" required>
+    <!-- Google reCAPTCHA widget -->
+    <div class="g-recaptcha" data-sitekey="6Leosr8oAAAAAKO7dwTGVz7yv6_YiWtMu1NVZCEi"></div>
     <button class="btn" type="button" id="retrieve-button">Retrieve and Decrypt</button>
   </div>
 </div>
 </body>
 
 <!--  -->
-  <script>
+ <script>
         // Variables to store the encrypted file, private key, and file name
         let encryptedFile = null;
         let privateKey = null;
         let fileName = null;
-
-        // File input, buttons, and form
-        const fileInput = document.getElementById("file-input");
+        // Email input, reCAPTCHA widget, and retrieve button
         const emailInput = document.getElementById("email-input");
-        const encryptButton = document.getElementById("encrypt-button");
+        const recaptchaWidget = document.querySelector(".g-recaptcha");
         const retrieveButton = document.getElementById("retrieve-button");
-        const uploadForm = document.getElementById("upload-form");
-
-        // Event listener for file upload and encryption
-        encryptButton.addEventListener("click", async function () {
-            if (!fileInput.files[0]) {
-                alert("Please select a file to upload.");
-                return;
-            }
-
-            // Prompt for recipient's email
-            const recipientEmail = emailInput.value;
-
-            // Perform encryption and file upload (simulated)
-            // You would replace this with your actual encryption and upload logic
-
-            // Generate an RSA key pair
-            const keyPair = await generateRSAKeyPair();
-
-            // Store the private key
-            privateKey = keyPair.privateKey;
-
-            // Encrypt the selected file with the public key
-            encryptedFile = await encryptFile(fileInput.files[0], keyPair.publicKey);
-
-            // Send an email notification to the recipient
-            await sendEmail(recipientEmail);
-
-            alert("File uploaded and encrypted. Recipient has been notified.");
-        });
-
         // Event listener for file retrieval and decryption
         retrieveButton.addEventListener("click", async function () {
-            if (encryptedFile && privateKey) {
-                // Decrypt the encrypted file
-                const decryptedFile = await decryptFile(encryptedFile, privateKey);
-
-                // Trigger file download
-                const blob = new Blob([decryptedFile], { type: "application/octet-stream" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = fileName;
-                a.click();
-            } else {
-                alert("No file available for retrieval.");
+            // Verify reCAPTCHA challenge (simulated)
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                alert("Please complete the CAPTCHA challenge.");
+                return;
             }
+            // Verify user's email address (simulated)
+            const userEmail = emailInput.value;
+            if (!userEmail || !validateEmail(userEmail)) {
+                alert("Invalid email address.");
+                return;
+            }
+            // Perform file retrieval and decryption (simulated)
+            // You would replace this with your actual retrieval and decryption logic
+            // Decrypt the encrypted file
+            const decryptedFile = await decryptFile(encryptedFile, privateKey);
+            // Trigger file download
+            const blob = new Blob([decryptedFile], { type: "application/octet-stream" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            a.click();
         });
-
-        // Function to generate an RSA key pair
-        async function generateRSAKeyPair() {
-            const keyPair = await window.crypto.subtle.generateKey(
-                {
-                    name: "RSA-OAEP",
-                    modulusLength: 2048,
-                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-                    hash: { name: "SHA-256" },
-                },
-                true,
-                ["encrypt", "decrypt"]
-            );
-
-            return keyPair;
+        // Function to validate email address format
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
         }
-
-        // Function to encrypt a file with the public key
-        async function encryptFile(file, publicKey) {
-            const reader = new FileReader();
-            return new Promise((resolve) => {
-                reader.onload = async (event) => {
-                    const fileData = new Uint8Array(event.target.result);
-                    const encryptedData = await window.crypto.subtle.encrypt(
-                        {
-                            name: "RSA-OAEP",
-                        },
-                        publicKey,
-                        fileData
-                    );
-
-                    resolve(encryptedData);
-                };
-                reader.readAsArrayBuffer(file);
-            });
-        }
-
-        // Simulated function to send an email notification to the recipient
-        async function sendEmail(recipientEmail) {
-            // Simulated email sending (replace with your email service)
-            // In a production environment, use an email service provider
-            alert(`Email sent to ${recipientEmail} with retrieval instructions.`);
-        }
-
         // Function to decrypt a file with the private key
         async function decryptFile(encryptedFile, privateKey) {
             const decryptedData = await window.crypto.subtle.decrypt(
@@ -169,7 +111,6 @@
                 privateKey,
                 encryptedFile
             );
-
             return new Uint8Array(decryptedData);
         }
     </script>
