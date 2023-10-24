@@ -37,16 +37,154 @@
 
 
 <!-- File Upload -->
-<div class="container" style="margin-top: 10px;">
-<div class="form" style="padding: 10px; ">
+<div class="container" >
+<div class="form" style="padding: 20px; margin-top: 10px;">
 <h3>File Upload</h3>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input style="color: black" type="file" name="file" id="fileInput" />
+<br>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input style="color: black" type="file" id="file-input" accept=".txt, .pdf, .doc, .docx">
     </form>
     <br>
-    <button class="btn btn-outline" type="submit">Upload</button>
+    <button class="btn btn-outline" type="submit" id="encrypt-button">Encrypt and Upload</button>
+  </div>
+  <br>
+  <div class="form" style="padding: 15px;">
+    <h3>Retrieve and Decrypt a File</h3>
+    <button class="btn" type="button" id="retrieve-button">Retrieve and Decrypt</button>
   </div>
 </div>
 </body>
+
+<!--  -->
+ <script>
+        // Variables to store the encrypted file, private key, and file name
+        let encryptedFile = null;
+        let privateKey = null;
+        let fileName = null;
+
+        // File input, buttons, and form
+        const fileInput = document.getElementById("file-input");
+        const encryptButton = document.getElementById("encrypt-button");
+        const retrieveButton = document.getElementById("retrieve-button");
+        const uploadForm = document.getElementById("upload-form");
+
+        // Event listener for file upload and encryption
+        encryptButton.addEventListener("click", async function () {
+            if (!fileInput.files[0]) {
+                alert("Please select a file to upload.");
+                return;
+            }
+
+            fileName = fileInput.files[0].name;
+
+            // Generate an RSA key pair
+            const keyPair = await generateRSAKeyPair();
+
+            // Store the private key
+            privateKey = keyPair.privateKey;
+
+            // Encrypt the selected file with the public key
+            encryptedFile = await encryptFile(fileInput.files[0], keyPair.publicKey);
+
+            // Send the encrypted file to the server (simulated)
+            await sendToServer(encryptedFile);
+
+            alert("File uploaded and encrypted.");
+        });
+
+        // Event listener for file retrieval and decryption
+        retrieveButton.addEventListener("click", async function () {
+            // Retrieve the encrypted file from the server (simulated)
+            const encryptedFileFromServer = await retrieveFromServer();
+
+            if (encryptedFileFromServer && privateKey) {
+                // Decrypt the retrieved encrypted file
+                const decryptedFile = await decryptFile(encryptedFileFromServer, privateKey);
+
+                // Trigger file download
+                const blob = new Blob([decryptedFile], { type: "application/octet-stream" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = fileName;
+                a.click();
+            } else {
+                alert("No file available for retrieval.");
+            }
+        });
+
+        // Function to generate an RSA key pair
+        async function generateRSAKeyPair() {
+            const keyPair = await window.crypto.subtle.generateKey(
+                {
+                    name: "RSA-OAEP",
+                    modulusLength: 2048,
+                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+                    hash: { name: "SHA-256" },
+                },
+                true,
+                ["encrypt", "decrypt"]
+            );
+
+            return keyPair;
+        }
+
+        // Function to encrypt a file with the public key
+        async function encryptFile(file, publicKey) {
+            const reader = new FileReader();
+            return new Promise((resolve) => {
+                reader.onload = async (event) => {
+                    const fileData = new Uint8Array(event.target.result);
+                    const encryptedData = await window.crypto.subtle.encrypt(
+                        {
+                            name: "RSA-OAEP",
+                        },
+                        publicKey,
+                        fileData
+                    );
+
+                    resolve(encryptedData);
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        // Simulated function to send the encrypted file to the server
+        async function sendToServer(encryptedFile) {
+            // Simulated server storage (replace with actual server-side logic)
+            // This function is a placeholder and does not actually send data to a server
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve();
+                }, 1000);
+            });
+        }
+
+        // Simulated function to retrieve the encrypted file from the server
+        async function retrieveFromServer() {
+            // Simulated server retrieval (replace with actual server-side logic)
+            // This function is a placeholder and does not actually retrieve data from a server
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulated encrypted data (replace with actual server response)
+                    const simulatedEncryptedData = encryptedFile; 
+                    resolve(simulatedEncryptedData);
+                }, 1000);
+            });
+        }
+
+        // Function to decrypt a file with the private key
+        async function decryptFile(encryptedFile, privateKey) {
+            const decryptedData = await window.crypto.subtle.decrypt(
+                {
+                    name: "RSA-OAEP",
+                },
+                privateKey,
+                encryptedFile
+            );
+
+            return new Uint8Array(decryptedData);
+        }
+    </script>
 <script src="index.js"></script>
 </html>

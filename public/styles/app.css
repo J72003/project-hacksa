@@ -8,6 +8,11 @@ body {
     border-radius: 20px !important;
 }
 
+.btn:hover {
+    background-color: blueviolet !important;
+    color: white !important;
+}
+
 .bt2 {
     color: white !important;
 }
@@ -31,13 +36,13 @@ h1, h3 {
     align-items: center !important;
 }
 .form {
-    background-color: white;
-    border-radius: 10px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: white !important;
+    border-radius: 10px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center!important;
+    align-items: center !important;
 }
 
 /* Cards */
