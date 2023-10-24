@@ -3,7 +3,6 @@ body {
 }
 
 button {
-    color: blueviolet !important;
-    border: 1px solid white;
-    border-radius: 20px;
+    background-color: blueviolet !important;
+    border-radius: 20px !important;
 }
