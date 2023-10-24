@@ -17,18 +17,10 @@ body {
 .background-image {
     width: 100% !important;
     height: 60px !important;
-    background-image: url('cyber-security-2.jpg') !important;
+    background-image: url('cyber-security-3.jpg') !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-}
-
-.gradient-overlay {
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: linear-gradient(#82828267, #82828267) !important; /* Define your gradient here */
 }
 
 /* Buttons */
@@ -62,12 +54,24 @@ h1, h3 {
 
 /* Form */
 .container {
-    width: 100% !important;
+    width: 100vw !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
 }
+
+#email-input {
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: box-shadow 0.1s ease !important;
+}
+
+#email-input:hover {
+    cursor: pointer !important;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
 .form {
     border: 1px solid black !important;
     border-radius: 10px !important;
@@ -91,5 +95,5 @@ h1, h3 {
 
 .card:hover {
     cursor: pointer !important;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2) !important;
 }
