@@ -19,7 +19,7 @@ h1, h3 {
 }
 
 /* Form */
-.container {
+.form {
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
