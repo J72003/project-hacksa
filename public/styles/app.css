@@ -8,6 +8,10 @@ body {
     border-radius: 20px !important;
 }
 
+.bt2 {
+    color: white !important;
+}
+
 /* A-Links */
 a {
     color: blueviolet !important;
