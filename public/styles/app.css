@@ -15,8 +15,8 @@ body {
     display:flex !important;
     justify-content: center !important;
     align-items: center !important;
-    opacity: 0;
-    animation: fadeIn 2s forwards 1s;
+    opacity: 0 !important;
+    animation: fadeIn 2s forwards 1s !important;
 }
 
 .background-image {
@@ -30,28 +30,28 @@ body {
 
 /* Logo Image */
 .logo {
-    max-width: 100%;
-    max-height: 100%;
-    transform: scale(0);  /* Start at zero scale */
-    animation: logoPopIn 1s forwards 2s; /* Scale up after 2s delay */
+    max-width: 100% !important;
+    max-height: 100% !important;
+    transform: scale(0) !important;
+    animation: logoPopIn 1s forwards 2s !important; 
 }
 
 /* Logo Animations */
 @keyframes fadeIn {
     to {
-        opacity: 1;
+        opacity: 1 !important;
     }
 }
 
 @keyframes logoPopIn {
     0% {
-        transform: scale(0);
+        transform: scale(0) !important;
     }
     70% {
-        transform: scale(1.1); /* Briefly overshoot to give a bounce effect */
+        transform: scale(1.1) !important; /* Briefly overshoot to give a bounce effect */
     }
     100% {
-        transform: scale(1);
+        transform: scale(1) !;
     }
 }
 
