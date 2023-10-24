@@ -126,12 +126,13 @@ h1, h3 {
 
 .card:hover {
     cursor: pointer !important;
-    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 10px 14px #00000033 !important;
 }
 
 /* Footer */
 footer {
     background-color: #333;
+    height: 20vh;
     padding: 20px 0;
     color: #fff;
     font-family: Arial, sans-serif;
@@ -145,7 +146,7 @@ footer {
 }
 
 .social-icons {
-    margin-top: 10px;
+    margin: 20px;
 }
 
 .social-icons a {
@@ -156,5 +157,5 @@ footer {
 }
 
 .social-icons a:hover {
-    color: #ddd;
+    color: #787878;
 }
