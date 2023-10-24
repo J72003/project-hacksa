@@ -31,3 +31,11 @@ h1, h3 {
     justify-content: center !important;
     align-items: center !important;
 }
+
+/* Cards */
+.card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
