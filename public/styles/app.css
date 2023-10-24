@@ -19,8 +19,8 @@ h1, h3 {
 }
 
 /* Form */
-.form {
-    height: 100% !important;
+.container {
+    height: 1000px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
