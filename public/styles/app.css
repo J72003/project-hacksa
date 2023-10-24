@@ -4,7 +4,7 @@ body {
 
 /* Buttons */
 .btn {
-    background-color: blueviolet !important;
+    color: blueviolet !important;
     border-radius: 20px !important;
 }
 
