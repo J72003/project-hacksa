@@ -20,7 +20,7 @@ h1, h3 {
 
 /* Form */
 .container {
-    height: 1000px !important;
+    height: 900px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
