@@ -2,7 +2,18 @@ body {
     background-color: #ffffff!important;
 }
 
+.body {
+    background-color: black !important;
+}
+
 /* Image */
+#background-image {
+    height: 100vh !important;
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 .background-image {
     width: 100% !important;
     height: 60px !important;
@@ -58,8 +69,7 @@ h1, h3 {
     align-items: center !important;
 }
 .form {
-    /* background-color: white !important; */
-    border: 1px solid black;
+    border: 1px solid black !important;
     border-radius: 10px !important;
     height: 100% !important;
     display: flex !important;
