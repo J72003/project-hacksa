@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(48, 48, 48)!important;
+    background-color: #ffffff!important;
 }
 
 /* Buttons */
@@ -19,7 +19,7 @@ body {
 
 /* A-Links */
 a {
-    color: blueviolet !important;
+    color: #ffffff !important;
 }
 
 /* H1 */
@@ -36,7 +36,8 @@ h1, h3 {
     align-items: center !important;
 }
 .form {
-    background-color: white !important;
+    /* background-color: white !important; */
+    border: 1px solid black;
     border-radius: 10px !important;
     height: 100% !important;
     display: flex !important;
