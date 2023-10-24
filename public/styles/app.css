@@ -92,7 +92,6 @@ h1, h3 {
     transition: box-shadow 0.1s ease !important;
 }
 
-
 .card:hover {
     cursor: pointer !important;
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2) !important;
