@@ -51,4 +51,6 @@ h1, h3 {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: box-shadow 0.1s ease !important;
 }
