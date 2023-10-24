@@ -2,7 +2,15 @@ body {
     background-color: rgb(48, 48, 48)!important;
 }
 
+/* Buttons */
 .btn {
     background-color: blueviolet !important;
     border-radius: 20px !important;
 }
+
+/* Navbar */
+nav {
+    background-color: white !important;
+}
+
+/* H1 */
